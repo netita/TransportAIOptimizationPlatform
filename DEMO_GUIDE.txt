@@ -1,0 +1,300 @@
+================================================================
+DISCORDIA AI OPERATIONS PLATFORM — DEMO GUIDE
+================================================================
+Audience : Discordia management / stakeholders
+Duration : 20–30 minutes
+URL       : http://localhost:3000
+----------------------------------------------------------------
+
+
+BEFORE YOU START
+----------------------------------------------------------------
+1. Run in terminal:
+   docker ps --filter name=discordia --format "{{.Names}}: {{.Status}}"
+
+   All 7 containers must show "healthy" or "Up":
+   - discordia-frontend
+   - discordia-backend
+   - discordia-postgres
+   - discordia-redis
+   - discordia-ml
+   - discordia-zookeeper
+   - discordia-simulator
+
+2. Open http://localhost:3000 in a browser (full screen)
+
+3. Keep a terminal open in the background for live demos (optional)
+
+NOTE: All data is simulated but realistic — same corridors, same
+border crossings, same warehouse hubs as real Discordia operations.
+In production, the simulator is replaced by a live OTM/GPS feed.
+
+
+================================================================
+PART 1 — LIVE DASHBOARD (5 minutes)
+================================================================
+
+WHAT TO SAY:
+"This is the Discordia AI Operations Platform. Everything you see
+is updating in real time — trucks are moving, border wait times
+are changing, and the AI is continuously analyzing the fleet."
+
+WHAT TO SHOW:
+
+1. KPI CARDS (top row)
+   - Point to: Active Shipments, Delayed, At-Risk, Trucks Online
+   - "These update automatically. No refresh needed."
+   - Point to the green "Live" dot in the header
+   - "That means we have a live connection to the data feed."
+
+2. LIVE FLEET MAP
+   - "50 trucks across Europe — GPS positions updating every 5 seconds"
+   - Point to orange pulsing dots: "Orange means the AI flagged
+     an anomaly — unusual speed, no GPS signal, suspicious pattern"
+   - Point to the corridor lines on the map:
+     "These are our 4 main trade corridors — Turkey to Germany,
+     Bucharest to Berlin, Sofia to Vienna, Varna to Hamburg"
+
+3. ALERTS FEED (right side)
+   - "Operational alerts sorted by severity — border incidents,
+     SLA risks, anomalies — all in one place"
+
+4. WAREHOUSE & BORDER PANELS
+   - "Live dock availability and queue times at all 8 hubs"
+   - "Live wait times at all 8 European border crossings"
+
+
+================================================================
+PART 2 — SHIPMENT INTELLIGENCE (5 minutes)
+================================================================
+
+WHAT TO SAY:
+"Let me show you what the AI knows about each individual shipment."
+
+WHAT TO SHOW:
+
+1. Click "View All" on the Shipments table
+   OR navigate to http://localhost:3000/shipments
+
+2. Point to the ML columns on the right:
+   - "AI Delay Prob — XGBoost machine learning model predicts
+     probability of delay for every active shipment"
+   - "Predicted Delay — how many minutes late, per shipment"
+   - "These models retrain automatically every 30 minutes
+     on fresh live data"
+
+3. Click on any shipment row with a high risk score (red bar)
+   This opens the SHIPMENT DETAIL PAGE
+
+4. On the detail page, walk through each section:
+
+   ROUTE MAP
+   - "Green dot is origin, red dot is destination"
+   - "Blue square is the assigned truck's last GPS position"
+   - "The dashed line is the planned route"
+
+   AI PREDICTION
+   - "94% delay probability — the model is almost certain
+     this shipment will be late"
+   - "Top factors: border inspection rate, wait time,
+     warehouse congestion — these are the exact causes"
+
+   ROUTE OPTIMIZATION
+   - "The system compared all available corridors using
+     live border data and recommends switching here"
+   - Point to the border breakdown with red bottlenecks:
+     "Kalotina: 1512 minutes — that's the problem"
+
+   DISPATCHER ACTIONS
+   - "Specific recommended actions for this shipment —
+     not generic advice, tied to this exact shipment's data"
+
+
+================================================================
+PART 3 — DISPATCHER RECOMMENDATION SYSTEM (3 minutes)
+================================================================
+
+WHAT TO SAY:
+"The platform doesn't just show data — it tells your dispatchers
+exactly what to do, ranked by urgency and impact."
+
+WHAT TO SHOW:
+
+1. Go back to http://localhost:3000 (main dashboard)
+2. Scroll down to the DISPATCHER ACTIONS panel
+3. Walk through the action types:
+
+   REROUTE  — "Corridor switch saves 2+ hours. One click decision."
+   ESCALATE — "ML predicts 90%+ delay on a CRITICAL shipment.
+               Needs a phone call now."
+   INVESTIGATE — "Anomaly detector flagged this truck.
+                  Something is wrong — check it."
+   HOLD     — "Warehouse at 90% congestion. Don't send
+               more trucks until it clears."
+
+4. Point to the urgency badges:
+   "CRITICAL items are always at the top. Dispatcher sees
+   the most important thing first, every time."
+
+
+================================================================
+PART 4 — AI COPILOT LIVE DEMO (8 minutes)
+================================================================
+
+WHAT TO SAY:
+"This is the AI Copilot — powered by Claude, Anthropic's AI.
+It has live access to the entire fleet: GPS, shipments,
+borders, warehouses, ML predictions, anomalies."
+
+HOW TO OPEN: Click the blue bot icon (bottom-right corner)
+
+--- QUESTION 1: Morning Briefing ---
+Type: "Give me a full operational briefing for the morning shift"
+
+WHAT TO SAY while it loads:
+"Watch — it pulls data from 6 different sources simultaneously
+and gives a single operational summary."
+
+EXPECTED ANSWER: Active count, delayed list, border alerts,
+warehouse congestion, top recommended actions.
+
+--- QUESTION 2: Live Border Comparison ---
+Type: "Is the Serbia route or the Romania route faster for
+Istanbul to Munich right now?"
+
+WHAT TO SAY:
+"This is the key question dispatchers face every day.
+Watch how it answers."
+
+EXPECTED ANSWER: Exact border wait times per crossing,
+calculated corridor totals, clear recommendation with reason.
+
+WHAT TO POINT OUT:
+"It said Kalotina: 1512 minutes. That is the live number
+from our border data feed right now — not a generic answer."
+
+--- QUESTION 3: SLA Risk ---
+Type: "Which shipments will miss SLA today?"
+
+WHAT TO SAY:
+"Connect this directly to money — every missed SLA is a
+penalty. The AI identifies them before they happen."
+
+--- QUESTION 4: Scenario Planning ---
+Type: "What would happen if Kapitan Andreevo border closes
+for 4 hours?"
+
+WHAT TO SAY:
+"This is planning intelligence — not just monitoring.
+How many shipments affected, which alternative corridors,
+estimated delay per shipment."
+
+--- INVITE THE BOSS TO ASK SOMETHING ---
+Say: "Ask it anything about the fleet right now."
+
+This works well because:
+- People always ask something the demo didn't cover
+- The Copilot almost always gives a useful answer
+- It shows the system is not scripted
+
+
+================================================================
+PART 5 — FLEET LOAD BALANCING (2 minutes)
+================================================================
+
+WHAT TO SAY:
+"The platform also manages how work is distributed across
+the entire fleet — not just individual shipments."
+
+WHAT TO SHOW:
+
+1. Go back to http://localhost:3000
+2. Scroll to the bottom — FLEET LOAD BALANCING panel
+3. Point to corridor bars:
+   "Orange means near capacity — we should avoid sending
+   more trucks on this corridor"
+   "Green is balanced — normal load"
+4. Point to balance score: "65% balanced overall"
+5. If assignments are visible:
+   "These are automatic truck-to-shipment recommendations —
+   nearest available truck to highest priority shipment"
+
+
+================================================================
+PART 6 — ANALYTICS (2 minutes, optional)
+================================================================
+
+Navigate to http://localhost:3000/analytics
+
+WHAT TO SHOW:
+- Shipment timeline (created vs delivered vs delayed over time)
+- Congestion heatmap across warehouse hubs
+- AI Model Performance section:
+  "MAE 3.9 minutes — our delay prediction is accurate to
+  within 4 minutes on average. Retrained every 30 minutes."
+
+
+================================================================
+CLOSING — WHAT TO SAY
+================================================================
+
+"Everything you saw today runs on simulated data that mirrors
+real Discordia operations. The AI models, decision engine,
+and platform are production-ready.
+
+The next step is connecting this to OTM — replacing the
+simulator with your live shipment and GPS data feed.
+That is the OTM Integration Layer, currently on the roadmap.
+
+Once connected, every dispatcher sees this platform instead
+of spreadsheets and manual border checks."
+
+
+================================================================
+IF SOMETHING GOES WRONG
+================================================================
+
+Header shows "Connecting" instead of "Live":
+   Wait 10 seconds — it reconnects automatically.
+   If it persists: docker compose restart backend
+
+Copilot gives a generic answer:
+   Rephrase to be more specific:
+   "Which border has the highest wait time right now?"
+   instead of "How are the borders?"
+
+Map not loading on shipment detail:
+   Hard refresh: Ctrl+Shift+R
+
+Backend error / blank page:
+   docker compose restart backend
+   Wait 15 seconds, refresh browser.
+
+
+================================================================
+QUESTIONS THE BOSS MIGHT ASK
+================================================================
+
+Q: Is this real data?
+A: "Simulated — but same routes, borders, and hubs as real
+   Discordia operations. Production connects to OTM and GPS."
+
+Q: How long to connect to our real systems?
+A: "The OTM integration layer is the next development phase.
+   The platform is designed for it from day one."
+
+Q: What happens if the AI makes a wrong recommendation?
+A: "Every recommendation shows its reasoning — the dispatcher
+   always makes the final decision. The AI surfaces the right
+   information faster, it does not act autonomously."
+
+Q: How accurate is the delay prediction?
+A: "MAE of 3.9 minutes — predictions are within 4 minutes
+   of actual delay on average. Retrained every 30 minutes
+   on fresh data."
+
+Q: Can we add more corridors or border crossings?
+A: "Yes — corridors and borders are configurable. Adding a
+   new corridor is a data change, not a code change."
+
+================================================================
